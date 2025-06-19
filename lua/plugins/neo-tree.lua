@@ -3,12 +3,22 @@ return {
   branch = "v3.x",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+    "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
-    -- {"3rd/image.nvim", opts = {}}, -- Optional image support in preview window: See `# Preview Mode` for more information
   },
   config = function()
-    vim.keymap.set("n", "<leader>e", ":Neotree filesystem float<CR>", {desc = "Explorer"})
-    vim.keymap.set("n", "<leader>gs", ":Neotree git_status float<CR>", {desc = "Git Status"})
+    require("neo-tree").setup({
+      filesystem = {
+        filtered_items = {
+          hide_dotfiles = false,
+        },
+      },
+      window = {
+        position = "float",
+      },
+      setup_called = false,
+    })
+    vim.keymap.set("n", "<leader>ee", ":Neotree filesystem float<CR>", { desc = "Explorer" })
+    vim.keymap.set("n", "<leader>ef", ":Neotree reveal float<CR>", { desc = "Reveal with current file" })
   end,
 }
