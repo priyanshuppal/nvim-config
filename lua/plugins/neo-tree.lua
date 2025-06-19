@@ -7,13 +7,8 @@ return {
     "MunifTanjim/nui.nvim",
     -- {"3rd/image.nvim", opts = {}}, -- Optional image support in preview window: See `# Preview Mode` for more information
   },
-  lazy = false, -- neo-tree will lazily load itself
-  ---@module "neo-tree"
-  ---@type neotree.Config?
-  opts = {
-    -- fill any relevant options here
-  },
-	config = function()
-	vim.keymap.set('n', '<C-b>',':Neotree filesystem reveal right<CR>', {})
-	end
+  config = function()
+    vim.keymap.set("n", "<leader>e", ":Neotree filesystem float<CR>", {desc = "Explorer"})
+    vim.keymap.set("n", "<leader>gs", ":Neotree git_status float<CR>", {desc = "Git Status"})
+  end,
 }
