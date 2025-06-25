@@ -1,7 +1,12 @@
 return {
     "saghen/blink.cmp",
-    -- optional: provides snippets for the snippet source
-    dependencies = { "rafamadriz/friendly-snippets" },
+    dependencies = {
+        {
+            "rafamadriz/friendly-snippets",
+            "supermaven-inc/supermaven-nvim",
+            "huijiro/blink-cmp-supermaven",
+        },
+    },
 
     version = "1.*",
     ---@module 'blink.cmp'
@@ -11,35 +16,42 @@ return {
             preset = "none",
             ["<Up>"] = { "select_prev", "fallback" },
             ["<Down>"] = { "select_next", "fallback" },
-            ["<CR>"] = { "accept", "fallback" }, -- show with a list of providers
+            ["<Tab>"] = { "accept", "fallback" }, -- show with a list of providers
             ["<C-space>"] = {
                 function(cmp)
                     cmp.show()
                 end,
             },
-
-            -- control whether the next command will be run when using a function
-            ["<C-n>"] = {
-                function(cmp)
-                    if some_condition then
-                        return
-                    end -- runs the next command
-                    return true -- doesn't run the next command
-                end,
-                "select_next",
-            },
         },
         appearance = {
             nerd_font_variant = "mono",
         },
-
-        completion = { documentation = { auto_show = false } },
-
-        sources = {
-            default = { "lsp", "path", "snippets", "buffer" },
+        completion = {
+            documentation = { auto_show = false },
+            menu = {
+                -- Don't automatically show the completion menu
+                auto_show = true,
+            },
+            ghost_text = { enabled = true },
+            trigger = {
+                prefetch_on_insert = true,
+                show_in_snippet = true,
+                show_on_backspace = true,
+                show_on_backspace_in_keyword = true,
+                show_on_insert = false,
+            },
         },
 
+        sources = {
+            default = { "lsp", "supermaven", "path", "snippets", "buffer" },
+            providers = {
+                supermaven = {
+                    name = "supermaven",
+                    module = "blink-cmp-supermaven",
+                    async = true,
+                },
+            },
+        },
         fuzzy = { implementation = "prefer_rust_with_warning" },
     },
-    opts_extend = { "sources.default" },
 }

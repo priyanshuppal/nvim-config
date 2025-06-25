@@ -5,7 +5,13 @@ return {
             keymaps = {
                 accept_suggestion = "<Tab>",
             },
+            disable_inline_completion = true,
         })
-        vim.keymap.set("n", "<leader>sm", "<cmd>SupermavenToggle <cr>", { noremap = true, silent = true, desc = "Supermaven Toggle" })
+        vim.keymap.set(
+            "n",
+            "<leader>sm",
+            "<cmd>SupermavenToggle <cr>",
+            { noremap = true, silent = true, desc = "Supermaven Toggle" }
+        )
     end,
 }
