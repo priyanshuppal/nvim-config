@@ -2,21 +2,26 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
-    ---@type snacks.Config
     opts = {
         -- your configuration comes here
         -- or leave it empty to use the default settings
         -- refer to the configuration section below
+
         bigfile = {
             enabled = true,
             notify = true,
             size = 1024 * 1024 * 2,
         },
         indent = { enabled = true },
-        input = { enabled = true },
-        picker = { enabled = false },
-        notifier = { enabled = false },
-        quickfile = { enabled = false },
+        input = {
+            icon = " ",
+            icon_hl = "SnacksInputIcon",
+            icon_pos = "left",
+            prompt_pos = "title",
+            win = { style = "input" },
+            expand = true,
+        },
+        dim = {},
         scroll = {
             enabled = true,
             animate = {
@@ -32,11 +37,27 @@ return {
         },
         statuscolumn = {
             enabled = true,
-            left = {  "sign" },
+            left = { "sign" },
             right = { "git" },
             git = { patterns = { "GitSign" } },
             refresh = 50,
         },
-        words = { enabled = false },
     },
+    keys = {
+    },
+    init = function()
+        vim.api.nvim_create_autocmd("User", {
+            pattern = "VeryLazy",
+            callback = function()
+                -- Setup some globals for debugging (lazy-loaded)
+                _G.dd = function(...) Snacks.debug.inspect(...) end
+                _G.bt = function() Snacks.debug.backtrace() end
+                vim.print = _G.dd -- Override print to use snacks for `:=` command
+
+                -- Create some toggle mappings
+                Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>tw")
+                Snacks.toggle.dim():map("<leader>sd")
+            end,
+        })
+    end,
 }

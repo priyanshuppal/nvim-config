@@ -27,7 +27,7 @@ return {
 			})
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "hover" })
 			vim.keymap.set("n", "<leader>kl", ":Telescope diagnostics<CR>", { desc = "Errors/Warnings" })
-			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
+			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { desc = "Go to definition" })
 			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Actions" })
 		end,
 	},
