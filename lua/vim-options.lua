@@ -5,7 +5,7 @@ local v = vim
 v.cmd("set number")
 v.g.mapleader = " "
 v.cmd("set number relativenumber")
-v.opt.cursorline = true
+v.opt.termguicolors = true
 v.diagnostic.config({ virtual_text = true })
 v.opt.clipboard:append("unnamedplus")
 v.opt.splitright = true
