@@ -44,6 +44,7 @@ return {
         },
     },
     keys = {
+        { "<leader>sse", function() Snacks.scroll.enable() end, desc = "Enable scroll" },
     },
     init = function()
         vim.api.nvim_create_autocmd("User", {

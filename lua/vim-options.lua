@@ -4,7 +4,6 @@ local v = vim
 -- vim options
 v.cmd("set number")
 v.g.mapleader = " "
-v.opt.termguicolors = true
 v.cmd("set number relativenumber")
 v.opt.cursorline = true
 v.diagnostic.config({ virtual_text = true })
@@ -27,6 +26,11 @@ v.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split Vertical" })
 v.keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split Horizontal" })
 v.keymap.set("n", "<leader>se", "<C-w>=", { desc = "Split equal size" })
 v.keymap.set("n", "<leader>sx", ":close<CR>", { desc = "Close current split" })
+v.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]]) -- make the window biger vertically
+v.keymap.set("n", "-", [[<cmd>vertical resize -5<cr>]]) -- make the window smaller vertically
+v.keymap.set("n", "+", [[<cmd>horizontal resize +2<cr>]]) -- make the window bigger horizontally by pressing shift and =
+v.keymap.set("n", "_", [[<cmd>horizontal resize -2<cr>]]) -- make the window smaller horizontally by pressing shift and -
+
 
 v.keymap.set("n", "<leader>to", ":tabnew<CR>", { desc = "Open new tab" })
 v.keymap.set("n", "<leader>tx", ":tabclose<CR>", { desc = "Close current tab" })
