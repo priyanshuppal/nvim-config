@@ -12,8 +12,10 @@ v.opt.clipboard:append("unnamedplus")
 v.opt.splitright = true
 v.opt.splitbelow = true
 v.opt.expandtab = true -- Use spaces instead of tabs
-v.opt.shiftwidth = 4   -- Indent by 4 spaces
-v.opt.tabstop = 4      -- A tab is displayed as 4 spaces
+v.opt.shiftwidth = 4 -- Indent by 4 spaces
+v.opt.tabstop = 4 -- A tab is displayed as 4 spaces
+
+v.opt.fixendofline = true
 -- keymaps
 v.keymap.set("n", "<C-k>", ":wincmd k<CR>", {})
 v.keymap.set("n", "<C-j>", ":wincmd j<CR>", {})
@@ -32,7 +34,31 @@ v.keymap.set("n", "<leader>tn", ":tabn<CR>", { desc = "Go to next tab" })
 v.keymap.set("n", "<leader>tp", ":tabp<CR>", { desc = "Go to previous tab" })
 v.keymap.set("n", "<leader>tf", ":tabnew %<CR>", { desc = "Open current buffer in new tab" })
 
-vim.keymap.set("n", "<Tab>", "<Cmd>BufferLineCycleNext<CR>", { noremap = true, silent = true, desc = "Next buffer" })
-vim.keymap.set("n","<S-Tab>","<Cmd>BufferLineCyclePrev<CR>",{ noremap = true, silent = true, desc = "Previous buffer" })
-vim.keymap.set("n", "<leader>q", "<Cmd>bd<CR>", { noremap = true, silent = true, desc = "Close buffer" })
-vim.keymap.set("n", "<leader>bp", "<Cmd>BufferLinePick<CR>", { noremap = true, silent = true, desc = "Pick buffer" })
+v.keymap.set("n", "<Tab>", "<Cmd>BufferLineCycleNext<CR>", { noremap = true, silent = true, desc = "Next buffer" })
+v.keymap.set(
+	"n",
+	"<S-Tab>",
+	"<Cmd>BufferLineCyclePrev<CR>",
+	{ noremap = true, silent = true, desc = "Previous buffer" }
+)
+v.keymap.set("n", "<leader>q", "<Cmd>bd<CR>", { noremap = true, silent = true, desc = "Close buffer" })
+v.keymap.set("n", "<leader>bp", "<Cmd>BufferLinePick<CR>", { noremap = true, silent = true, desc = "Pick buffer" })
+-- Trim trailing whitespace
+v.api.nvim_create_autocmd("BufWritePre", {
+	pattern = "*",
+	command = [[%s/\s\+$//e]],
+})
+
+-- Trim final newlines (leave only one)
+v.api.nvim_create_autocmd("BufWritePre", {
+	pattern = "*",
+	callback = function()
+		local last = v.fn.line("$")
+		while last > 1 and v.fn.getline(last) == "" do
+			v.api.nvim_buf_set_lines(0, last - 1, last, false, {})
+			last = last - 1
+		end
+	end,
+})
+
+-- Ensure file ends with a newline
