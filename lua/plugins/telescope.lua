@@ -8,7 +8,6 @@ return {
             local telescope = require("telescope")
             telescope.setup({
                 defaults = {
-                    path_display = {"smart"},
                 }
             })
 			vim.keymap.set("n", "<leader>ff", builtin.find_files, {})

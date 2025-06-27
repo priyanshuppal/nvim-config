@@ -58,6 +58,7 @@ return {
                 -- Create some toggle mappings
                 Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>tw")
                 Snacks.toggle.dim():map("<leader>sd")
+                Snacks.toggle.diagnostics():map("<leader>sD")
             end,
         })
     end,
