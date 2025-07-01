@@ -3,6 +3,8 @@ local v = vim
 
 -- vim options
 v.cmd("set number")
+v.cmd("set ignorecase")
+v.cmd("set smartcase")
 v.g.mapleader = " "
 v.cmd("set number relativenumber")
 v.opt.termguicolors = true
@@ -46,6 +48,7 @@ v.keymap.set(
 	{ noremap = true, silent = true, desc = "Previous buffer" }
 )
 v.keymap.set("n", "<leader>q", "<Cmd>bd<CR>", { noremap = true, silent = true, desc = "Close buffer" })
+v.keymap.set("n", "<leader>Q", "<Cmd>bd!<CR>", { noremap = true, silent = true, desc = "Close buffer" })
 v.keymap.set("n", "<leader>bp", "<Cmd>BufferLinePick<CR>", { noremap = true, silent = true, desc = "Pick buffer" })
 -- Trim trailing whitespace
 v.api.nvim_create_autocmd("BufWritePre", {

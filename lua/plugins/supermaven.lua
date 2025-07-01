@@ -9,9 +9,9 @@ return {
         })
         vim.keymap.set(
             "n",
-            "<leader>sm",
+            "<leader>tm",
             "<cmd>SupermavenToggle <cr>",
-            { noremap = true, silent = true, desc = "Supermaven Toggle" }
+            { noremap = true, silent = true, desc = "Toggle SuperMaven" }
         )
     end,
 }
