@@ -18,10 +18,10 @@ v.opt.tabstop = 4 -- A tab is displayed as 4 spaces
 
 v.opt.fixendofline = true
 -- keymaps
-v.keymap.set("n", "<C-k>", ":wincmd k<CR>", {})
-v.keymap.set("n", "<C-j>", ":wincmd j<CR>", {})
-v.keymap.set("n", "<C-h>", ":wincmd h<CR>", {})
-v.keymap.set("n", "<C-l>", ":wincmd l<CR>", {})
+-- v.keymap.set("n", "<C-k>", ":wincmd k<CR>", {})
+-- v.keymap.set("n", "<C-j>", ":wincmd j<CR>", {})
+-- v.keymap.set("n", "<C-h>", ":wincmd h<CR>", {})
+-- v.keymap.set("n", "<C-l>", ":wincmd l<CR>", {})
 v.keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
 v.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split Vertical" })
@@ -55,17 +55,3 @@ v.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*",
 	command = [[%s/\s\+$//e]],
 })
-
--- Trim final newlines (leave only one)
-v.api.nvim_create_autocmd("BufWritePre", {
-	pattern = "*",
-	callback = function()
-		local last = v.fn.line("$")
-		while last > 1 and v.fn.getline(last) == "" do
-			v.api.nvim_buf_set_lines(0, last - 1, last, false, {})
-			last = last - 1
-		end
-	end,
-})
-
--- Ensure file ends with a newline
