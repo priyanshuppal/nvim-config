@@ -15,6 +15,8 @@ v.opt.splitbelow = true
 v.opt.expandtab = true -- Use spaces instead of tabs
 v.opt.shiftwidth = 4 -- Indent by 4 spaces
 v.opt.tabstop = 4 -- A tab is displayed as 4 spaces
+v.opt.smartindent = true
+v.opt.winborder = 'rounded'
 
 v.opt.fixendofline = true
 -- keymaps
