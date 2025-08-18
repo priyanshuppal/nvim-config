@@ -13,8 +13,8 @@ v.opt.clipboard:append("unnamedplus")
 v.opt.splitright = true
 v.opt.splitbelow = true
 v.opt.expandtab = true -- Use spaces instead of tabs
-v.opt.shiftwidth = 4 -- Indent by 4 spaces
-v.opt.tabstop = 4 -- A tab is displayed as 4 spaces
+v.opt.shiftwidth = 2 -- Indent by 4 spaces
+v.opt.tabstop = 2 -- A tab is displayed as 4 spaces
 v.opt.smartindent = true
 v.opt.winborder = 'rounded'
 
