@@ -5,7 +5,7 @@ return {
             keymaps = {
                 accept_suggestion = "<Tab>",
             },
-            disable_inline_completion = true,
+            disable_inline_completion = false,
         })
         vim.keymap.set(
             "n",

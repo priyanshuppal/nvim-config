@@ -16,6 +16,6 @@ return {
     -- order to load the plugin when the command is run for the first time
     keys = {
         { "<leader>lgg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
-        { "<leader>lgb", "<cmd>BlameLineToggle<cr>", desc = "Toggle Blame Line" }
+        { "<leader>tb", "<cmd>BlameLineToggle<cr>", desc = "Toggle Blame Line" }
     }
 }
