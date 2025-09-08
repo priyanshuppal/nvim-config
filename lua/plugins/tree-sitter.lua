@@ -19,6 +19,7 @@ return {
 				"dockerfile",
 				"gitignore",
 				"c",
+        "http"
 			},
 			highlight = { enable = true },
 			indent = { enable = true },
