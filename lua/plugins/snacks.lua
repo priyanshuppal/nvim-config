@@ -22,19 +22,6 @@ return {
             expand = true,
         },
         dim = {},
-        -- scroll = {
-        --     enabled = true,
-        --     animate = {
-        --         duration = { step = 15, total = 250 },
-        --         easing = "linear",
-        --     },
-        --     -- faster animation when repeating scroll after delay
-        --     animate_repeat = {
-        --         delay = 100, -- delay in ms before using the repeat animation
-        --         duration = { step = 5, total = 50 },
-        --         easing = "linear",
-        --     },
-        -- },
         statuscolumn = {
             enabled = true,
             left = { "sign" },
@@ -42,6 +29,7 @@ return {
             git = { patterns = { "GitSign" } },
             refresh = 50,
         },
+        scroll = { enabled = false },
     },
     keys = {
         { "<leader>sse", function() Snacks.scroll.enable() end, desc = "Enable scroll" },

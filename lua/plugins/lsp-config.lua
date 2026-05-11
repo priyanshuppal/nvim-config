@@ -17,11 +17,16 @@ return {
 		"neovim/nvim-lspconfig",
 		dependencies = { "saghen/blink.cmp" },
 		config = function()
-			local capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
-			local lspconfig = require("lspconfig")
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-			})
+			local capabilities = require("blink.cmp").get_lsp_capabilities()
+
+			local servers = { "lua_ls", "ts_ls", "eslint" }
+			for _, server in ipairs(servers) do
+				vim.lsp.config(server, {
+					capabilities = capabilities,
+				})
+				vim.lsp.enable(server)
+			end
+
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "hover" })
 			vim.keymap.set("n", "<leader>kl", ":Telescope diagnostics<CR>", { desc = "Errors/Warnings" })
 			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { desc = "Go to definition" })
